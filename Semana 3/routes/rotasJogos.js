@@ -10,7 +10,6 @@ router.post('/', jwtMiddleware, async (req, res, next) => {
     const body = req.body;
     const jogo = {
       nome: body.nome,
-      ano: body.ano,
       preco: body.preco,
       genero: body.genero,
       UsuarioId: req.user.id
@@ -27,6 +26,8 @@ router.post('/', jwtMiddleware, async (req, res, next) => {
 router.get('/', jwtMiddleware, async (req, res, next) => {
   try {
     const jogos = await Jogo.findAll({
+      // attributes é usado para escolher quais campos serão selecionados no banco de dados
+      attributes: ['id', 'nome', 'preco', 'genero', 'createdAt'],
       // Include é usado para incluir uma entidade de relacionamento
       include: {
         model: Usuario,
@@ -43,6 +44,7 @@ router.get('/', jwtMiddleware, async (req, res, next) => {
 router.get('/:id', jwtMiddleware, async (req, res, next) => {
   try {
     const jogo = await Jogo.findByPk(req.params.id, {
+      attributes: ['id', 'nome', 'preco', 'genero', 'createdAt'],
       include: {
         model: Usuario,
         attributes: ['id', 'nome'],
@@ -75,7 +77,6 @@ router.put('/:id', jwtMiddleware, async (req, res, next) => {
     const body = req.body;
     // Não é permitido alterar o usuário
     jogo.nome = body.nome || jogo.nome;
-    jogo.ano = body.ano || jogo.ano;
     jogo.preco = body.preco || jogo.preco;
     jogo.genero = body.genero || jogo.genero;
 

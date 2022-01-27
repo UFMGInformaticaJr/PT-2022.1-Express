@@ -28,4 +28,4 @@ app.use('/jogos', routerJogos);
 const errorHandler = require('./middleware/error-handler');
 app.use(errorHandler);
 
-app.listen(3000, console.log('API rodando'))
+app.listen(3001, console.log('API rodando'))

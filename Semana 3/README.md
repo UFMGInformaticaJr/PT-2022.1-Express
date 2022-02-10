@@ -55,7 +55,7 @@ Rota usada para criar um novo usuário no sistema.
     - **Conteúdo**: Vazio
  
 ### Ver todos os usuários
-Rota usada para criar um novo usuário no sistema.
+Rota usada para ver todos os usuários do sistema.
 
 - **URL:** /usuarios/
 - **Método:** `GET`
